@@ -57,7 +57,7 @@ export const HeroSection = () => {
       ))}
 
       {/* Content */}
-      <div className="relative z-10 max-w-[1600px] mx-auto px-5 sm:px-8 md:px-16 w-full pt-20 sm:pt-0">
+      <div className="relative z-10 max-w-[1600px] mx-auto px-5 sm:px-8 md:px-16 w-full pt-20 sm:pt-0 pb-24 sm:pb-0">
 
 
 
@@ -115,7 +115,7 @@ export const HeroSection = () => {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
+      <div className="absolute bottom-2 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
         <p className="font-mono text-[0.55rem] tracking-[0.3em] text-ocw-gray">SCROLL</p>
         <div className="scroll-indicator" />
       </div>
