@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { CONFIG } from '../config';
 
 export const Footer = () => {
@@ -30,19 +31,20 @@ export const Footer = () => {
             <p className="font-mono text-[0.6rem] tracking-[0.2em] text-ocw-red mb-6">NAVIGATE</p>
             <div className="flex flex-col gap-3">
               {[
-                { label: 'OUR WORK', href: '#work' },
-                { label: 'SERVICES', href: '#services' },
-                { label: 'CLIENT FILMS', href: '#client-films' },
-                { label: 'ABOUT', href: '#story' },
-                { label: 'CONTACT', href: '#contact' },
+                { label: 'HOME', href: '/' },
+                { label: 'SERVICES', href: '/services' },
+                { label: 'WORKS', href: '/works' },
+                { label: 'ABOUT', href: '/about' },
+                { label: 'CONTACT', href: '/contact' },
               ].map(link => (
-                <button
+                <Link
                   key={link.label}
-                  onClick={() => document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' })}
-                  className="font-mono text-[0.65rem] tracking-[0.15em] text-ocw-gray hover:text-ocw-white transition-colors text-left"
+                  to={link.href}
+                  onClick={scrollToTop}
+                  className="font-mono text-[0.65rem] tracking-[0.15em] text-ocw-gray hover:text-ocw-white transition-colors text-left w-fit"
                 >
                   {link.label}
-                </button>
+                </Link>
               ))}
             </div>
           </div>
