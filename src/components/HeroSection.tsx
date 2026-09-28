@@ -24,7 +24,7 @@ const DustParticle = ({ delay }: { delay: number }) => {
   );
 };
 
-const headline = ["LET'S CONNECT"];
+const headline = ["CRAFTING", "CINEMATIC", "STORIES"];
 
 export const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -85,26 +85,30 @@ export const HeroSection = () => {
               SHOOT - EDIT - PUBLISH - PROMOTE - MARKET - SUCCESS
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-8">
             <a
               href="https://www.instagram.com/our_creative_works/"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-outline justify-center sm:justify-start"
+              className="group relative px-8 py-4 border border-white/20 bg-white/5 backdrop-blur-md text-white text-sm font-bold tracking-[0.2em] uppercase overflow-hidden hover:border-white/50 transition-colors duration-300 flex items-center justify-center gap-3"
             >
-              CONTENT
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
+              <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+              <span className="relative z-10 flex items-center gap-3">
+                CONTENT
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:rotate-12 transition-transform duration-300">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </span>
             </a>
             <button
               id="start-project-btn"
-              className="btn-outline justify-center sm:justify-start"
+              className="group relative px-8 py-4 border border-ocw-red/30 bg-ocw-red/10 backdrop-blur-md text-white text-sm font-bold tracking-[0.2em] uppercase overflow-hidden hover:border-ocw-red transition-colors duration-300 flex items-center justify-center"
               onClick={() => setIsContactModalOpen(true)}
             >
-              CONTACT US
+              <div className="absolute inset-0 bg-ocw-red translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+              <span className="relative z-10">CONTACT US</span>
             </button>
           </div>
         </div>

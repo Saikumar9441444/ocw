@@ -70,15 +70,12 @@ const PortfolioCard = ({
       {/* Background while loading */}
       {!isLoaded && <div className="absolute inset-0 bg-ocw-black z-0" />}
 
-      {isLoaded && project.video && (
-        <video
-          src={project.video}
-          className="w-full h-full pointer-events-none transition-transform duration-700 bg-black z-0 object-cover"
+      {isLoaded && project.image && (
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-full transition-transform duration-700 bg-black z-0 object-cover"
           style={{ transform: hovered ? 'scale(1.05)' : 'scale(1)' }}
-          autoPlay
-          muted
-          loop
-          playsInline
         />
       )}
 
