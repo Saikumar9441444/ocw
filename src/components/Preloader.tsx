@@ -6,7 +6,7 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // 5 seconds loading simulation
+    // 3 seconds loading simulation
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
@@ -18,10 +18,10 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
           }, 400); // Pause briefly at 100%
           return 100;
         }
-        // Increment by 1 every 50ms = 5,000ms (5 seconds) total
+        // Increment by 1 every 30ms = 3,000ms (3 seconds) total
         return Math.min(prev + 1, 100);
       });
-    }, 50);
+    }, 30);
 
     return () => clearInterval(interval);
   }, [onComplete]);
