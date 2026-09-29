@@ -13,7 +13,6 @@ const sliderImages = [
 
 export const ServicesPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [selectedService, setSelectedService] = useState<any>(null);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const navigate = useNavigate();
 

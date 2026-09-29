@@ -1,41 +1,5 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { CONFIG } from '../config';
-
-const Counter = ({ target, suffix = '' }: { target: string; suffix?: string }) => {
-  const num = parseInt(target.replace(/\D/g, ''));
-  const isTargetNaN = isNaN(num);
-  const [display, setDisplay] = useState(isTargetNaN ? target : '0');
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true });
-
-  useEffect(() => {
-    if (!inView || isTargetNaN) return;
-    
-    let start = 0;
-    const duration = 2000;
-    const step = 16;
-    const steps = duration / step;
-    const increment = num / steps;
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= num) {
-        setDisplay(target);
-        clearInterval(timer);
-      } else {
-        setDisplay(Math.floor(start) + (target.includes('+') ? '+' : ''));
-      }
-    }, step);
-    return () => clearInterval(timer);
-  }, [inView, target, num, isTargetNaN]);
-
-  return (
-    <div ref={ref} className="counter-number">
-      {display}{suffix}
-    </div>
-  );
-};
-
 export const StatsSection = () => {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
