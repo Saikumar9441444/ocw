@@ -9,7 +9,8 @@ interface VideoModalProps {
 
 export const VideoModal = ({ isOpen, onClose, videoSrc }: VideoModalProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isMuted, setIsMuted] = useState(false); // Often users want audio unmuted if they explicitly click it, but browsers might block autoplay unmuted. We'll start unmuted, but let them toggle.
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [isMuted, setIsMuted] = useState(false); // Start unmuted as requested
 
   useEffect(() => {
     if (isOpen && videoRef.current) {
@@ -27,7 +28,7 @@ export const VideoModal = ({ isOpen, onClose, videoSrc }: VideoModalProps) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-lg sm:p-6"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-md sm:p-6"
           onClick={onClose}
         >
           {/* Close Button */}
@@ -44,14 +45,16 @@ export const VideoModal = ({ isOpen, onClose, videoSrc }: VideoModalProps) => {
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 120 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full sm:max-w-md h-full sm:h-auto sm:aspect-[9/16] bg-black sm:rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center"
+            className="relative w-full h-[100dvh] sm:h-auto sm:max-w-[420px] sm:aspect-[9/16] sm:max-h-[90vh] bg-black sm:rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center mx-auto"
           >
             {videoSrc ? (
-              videoSrc.includes('drive.google.com') ? (
+              videoSrc.includes('drive.google.com') || videoSrc.includes('youtube.com') ? (
                 <iframe
-                  src={videoSrc.replace('&mute=1', '')}
+                  ref={iframeRef}
+                  src={videoSrc.includes('youtube.com') ? `${videoSrc.replace('&mute=1', '')}&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0&controls=0&playsinline=1&enablejsapi=1` : videoSrc.replace('&mute=1', '')}
                   className="w-full h-full bg-black"
-                  allow="autoplay"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
                   style={{ border: 'none' }}
                 />
               ) : (
@@ -77,7 +80,15 @@ export const VideoModal = ({ isOpen, onClose, videoSrc }: VideoModalProps) => {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  setIsMuted(!isMuted);
+                  const newMuted = !isMuted;
+                  setIsMuted(newMuted);
+                  
+                  if (iframeRef.current && videoSrc.includes('youtube.com')) {
+                    iframeRef.current.contentWindow?.postMessage(
+                      JSON.stringify({ event: 'command', func: newMuted ? 'mute' : 'unMute', args: [] }),
+                      '*'
+                    );
+                  }
                 }}
                 className="absolute bottom-6 right-6 bg-black/50 hover:bg-black/80 backdrop-blur-md border border-white/10 text-white p-3 rounded-full transition-all"
               >

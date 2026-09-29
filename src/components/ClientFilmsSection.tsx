@@ -140,7 +140,7 @@ export const ClientFilmsSection = () => {
             transition={{ duration: 0.7 }}
             className="section-label mb-4"
           >
-            02 — CLIENT FILMS
+            CLIENT FILMS
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 40 }}

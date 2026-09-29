@@ -26,9 +26,9 @@ const PortfolioCard = ({
   useEffect(() => {
     if (!inView) return;
 
-    // Stagger by 600ms per index so they load sequentially
-    const staggerDelay = index * 600;
-    const loadDuration = 1500; // 1.5 seconds loading animation per card
+    // Stagger by 150ms per index so they load quickly
+    const staggerDelay = index * 150;
+    const loadDuration = 600; // 0.6 seconds loading animation per card
 
     let startTime = Date.now() + staggerDelay;
     
@@ -74,7 +74,7 @@ const PortfolioCard = ({
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-full transition-transform duration-700 bg-black z-0 object-cover"
+          className="w-full h-full transition-transform duration-700 bg-black z-0 object-cover absolute inset-0"
           style={{ transform: hovered ? 'scale(1.05)' : 'scale(1)' }}
         />
       )}

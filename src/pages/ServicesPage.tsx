@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ContactSection } from '../components/ContactSection';
+import { useNavigate } from 'react-router-dom';
 import { CONFIG } from '../config';
 import { VisitingCardModal } from '../components/VisitingCardModal';
 
@@ -15,6 +15,7 @@ export const ServicesPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedService, setSelectedService] = useState<any>(null);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -24,7 +25,7 @@ export const ServicesPage = () => {
   }, []);
 
   return (
-    <main className="min-h-screen bg-ocw-black pt-24 pb-24 film-grain">
+    <main className="min-h-screen bg-ocw-black pt-16 pb-24 film-grain">
       
       {/* Small Hero Slider */}
       <div className="relative w-full h-[40vh] md:h-[50vh] overflow-hidden mb-16 md:mb-24">
@@ -54,7 +55,7 @@ export const ServicesPage = () => {
 
       <div className="max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16">
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
           {CONFIG.services.map((service, index) => (
             <div key={service.number} className="relative group/card">
               {/* Background Glow Effect */}
@@ -65,7 +66,13 @@ export const ServicesPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 className="group relative overflow-hidden bg-ocw-charcoal border border-white/5 cursor-pointer transition-all duration-500 hover:border-ocw-red/50 hover:-translate-y-1 z-10 h-full"
-                onClick={() => setSelectedService(service)}
+                onClick={() => {
+                  if (service.id === 'reel-shoots-iphones') {
+                    navigate('/reels');
+                  } else {
+                    navigate(`/services/${service.id}`);
+                  }
+                }}
               >
               <div className="flex flex-col h-full">
                 {/* Top Image */}
@@ -110,7 +117,11 @@ export const ServicesPage = () => {
                     <button 
                       onClick={(e) => {
                         e.stopPropagation();
-                        setIsContactModalOpen(true);
+                        if (service.id === 'reel-shoots-iphones') {
+                          navigate('/reels');
+                        } else {
+                          navigate(`/services/${service.id}`);
+                        }
                       }}
                       className="w-full flex items-center justify-between group/btn bg-ocw-black hover:bg-ocw-red border border-white/10 hover:border-ocw-red text-ocw-white px-4 py-2.5 sm:py-2 xl:py-3 transition-all duration-300"
                     >
@@ -129,99 +140,7 @@ export const ServicesPage = () => {
         </div>
       </div>
 
-      {/* Service Detail Modal */}
-      <AnimatePresence>
-        {selectedService && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-10"
-          >
-            {/* Backdrop */}
-            <div 
-              className="absolute inset-0 bg-ocw-black/95 backdrop-blur-xl"
-              onClick={() => setSelectedService(null)}
-            />
-            
-            {/* Modal Content */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ delay: 0.1, duration: 0.4 }}
-              className="relative w-full max-w-4xl bg-ocw-charcoal border border-white/10 overflow-hidden flex flex-col md:flex-row shadow-2xl"
-            >
-              <button 
-                onClick={() => setSelectedService(null)}
-                className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-ocw-black/50 hover:bg-ocw-red text-white transition-colors duration-300 rounded-full"
-              >
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M1 1l12 12M1 13L13 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
 
-              <div className="w-full md:w-5/12 h-64 md:h-auto relative">
-                <img 
-                  src={selectedService.image} 
-                  alt={selectedService.title} 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-ocw-charcoal hidden md:block" />
-                <div className="absolute inset-0 bg-gradient-to-t from-ocw-charcoal to-transparent md:hidden" />
-              </div>
-              
-              <div className="w-full md:w-7/12 p-8 md:p-12 flex flex-col justify-center">
-                <span className="font-mono text-ocw-red text-sm tracking-widest mb-3">
-                  {selectedService.number}
-                </span>
-                <h2 className="font-cinematic font-bold text-ocw-white text-3xl md:text-4xl mb-4 leading-tight">
-                  {selectedService.title}
-                </h2>
-                <p className="font-body text-ocw-gray text-base mb-8">
-                  {selectedService.description}
-                </p>
-                
-                <h4 className="font-mono text-ocw-white text-xs tracking-widest mb-4 border-b border-white/10 pb-2">
-                  WHAT'S INCLUDED
-                </h4>
-                
-                <ul className="flex flex-col gap-3">
-                  {selectedService.features?.map((feature: string, idx: number) => (
-                    <motion.li 
-                      key={idx}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.3 + (idx * 0.05) }}
-                      className="flex items-start gap-3 text-ocw-white-dim text-sm"
-                    >
-                      <span className="text-ocw-red mt-1">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                          <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                      </span>
-                      {feature}
-                    </motion.li>
-                  ))}
-                </ul>
-                
-                <button 
-                  onClick={() => {
-                    setSelectedService(null);
-                    setTimeout(() => setIsContactModalOpen(true), 300);
-                  }}
-                  className="mt-10 btn-primary self-start"
-                >
-                  BOOK THIS SERVICE
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M1 7h12M8 2l6 5-6 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Our Process Section */}
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 mt-32 mb-16">
@@ -297,11 +216,7 @@ export const ServicesPage = () => {
         </div>
       </div>
 
-      {/* Add Contact Section Below Services */}
-      <div className="mt-0">
-        <ContactSection />
-      </div>
-      
+
       <VisitingCardModal 
         isOpen={isContactModalOpen} 
         onClose={() => setIsContactModalOpen(false)} 

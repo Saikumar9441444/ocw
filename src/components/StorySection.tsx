@@ -20,7 +20,7 @@ export const StorySection = () => {
               transition={{ duration: 0.7 }}
               className="mb-5"
             >
-              <p className="section-label">04 — THE STORY</p>
+              <p className="section-label">THE STORY</p>
             </motion.div>
 
             <motion.h2

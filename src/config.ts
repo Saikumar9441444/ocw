@@ -66,7 +66,7 @@ export const CONFIG = {
       number: '04',
       title: 'CORPORATE & PROFESSIONAL EVENTS',
       description: 'Professional coverage for Store Openings, Ribbon Cutting Ceremonies, Business Launches, and Brand Promotional Events.',
-      image: '/cult_store.jpg',
+      image: '/gym_store.jpg',
       features: [
         'Store Openings',
         'Ribbon Cutting Ceremonies',
@@ -89,16 +89,30 @@ export const CONFIG = {
         'Music Videos & Promos'
       ]
     },
+    {
+      id: 'promotional-shoots',
+      number: '06',
+      title: 'PROMOTIONAL SHOOTS',
+      description: 'High-impact promotional videos, commercial shoots, and branding content tailored to elevate your business.',
+      image: '/gym_store.jpg',
+      features: [
+        'Commercial Shoots',
+        'Product Promos',
+        'Brand Identity Campaigns',
+        'Real Estate Walkthroughs',
+        'Advertising Content'
+      ]
+    },
   ],
   portfolio: [
     {
-      id: 1,
-      title: 'BIKE DELIVERY',
-      category: 'CINEMATIC',
+      id: 3,
+      title: 'CULT STORE 01',
+      category: 'PROMOTIONAL',
       year: '2026',
-      description: 'Cinematic coverage of a brand new bike delivery experience.',
-      image: '/bike_delivery.jpg',
-      video: '/videos/bike_delivery.mp4',
+      description: 'Premium store walkthrough and brand promotion.',
+      image: 'https://img.youtube.com/vi/9-nnvOdWM2A/maxresdefault.jpg',
+      video: 'https://www.youtube.com/embed/9-nnvOdWM2A?autoplay=1&mute=1&loop=1&playlist=9-nnvOdWM2A',
       featured: true,
     },
     {
@@ -107,18 +121,18 @@ export const CONFIG = {
       category: 'EVENT',
       year: '2026',
       description: 'High energy sports coverage and cinematic highlights.',
-      image: '/cricket_tournament.jpg',
-      video: '/videos/cricket_tournament.mov',
+      image: 'https://img.youtube.com/vi/PbmhdAOPRuk/maxresdefault.jpg',
+      video: 'https://www.youtube.com/embed/PbmhdAOPRuk?autoplay=1&mute=1&loop=1&playlist=PbmhdAOPRuk',
       featured: true,
     },
     {
-      id: 3,
-      title: 'CULT STORE 01',
-      category: 'PROMOTIONAL',
+      id: 1,
+      title: 'BIKE DELIVERY',
+      category: 'CINEMATIC',
       year: '2026',
-      description: 'Premium store walkthrough and brand promotion.',
-      image: '/cult_store.jpg',
-      video: '/videos/cult_store_01.mov',
+      description: 'Cinematic coverage of a brand new bike delivery experience.',
+      image: 'https://img.youtube.com/vi/c4Bmc3-N67g/maxresdefault.jpg',
+      video: 'https://www.youtube.com/embed/c4Bmc3-N67g?autoplay=1&mute=1&loop=1&playlist=c4Bmc3-N67g',
       featured: true,
     },
     {
@@ -127,8 +141,8 @@ export const CONFIG = {
       category: 'PROMOTIONAL',
       year: '2026',
       description: 'Dynamic fitness apparel and store cinematic.',
-      image: '/photography_cinematic.jpg',
-      video: '/videos/cult_store_02.mov',
+      image: 'https://img.youtube.com/vi/Ty2ElzVos3w/maxresdefault.jpg',
+      video: 'https://www.youtube.com/embed/Ty2ElzVos3w?autoplay=1&mute=1&loop=1&playlist=Ty2ElzVos3w',
       featured: false,
     },
     {

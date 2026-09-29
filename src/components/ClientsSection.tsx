@@ -17,7 +17,7 @@ export const ClientsSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <p className="section-label mb-4">05 — OUR CLIENTS</p>
+          <p className="section-label mb-4">OUR CLIENTS</p>
           <h2
             className="cinematic-title font-cinematic font-black text-ocw-white"
             style={{ fontSize: 'clamp(2rem, 4vw, 4.5rem)' }}

@@ -24,7 +24,7 @@ const DustParticle = ({ delay }: { delay: number }) => {
   );
 };
 
-const headline = ["CRAFTING", "CINEMATIC", "STORIES"];
+const headline = ["WE ARE FOR YOU"];
 
 export const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -57,19 +57,20 @@ export const HeroSection = () => {
       ))}
 
       {/* Content */}
-      <div className="relative z-10 max-w-[1600px] mx-auto px-5 sm:px-8 md:px-16 w-full pt-20 sm:pt-0 pb-24 sm:pb-0">
+      <div className="relative z-10 max-w-[1600px] mx-auto px-5 sm:px-8 md:px-16 w-full pt-20 sm:pt-0 pb-24 sm:pb-0 flex flex-col items-center text-center">
 
 
 
         {/* Headline */}
-        <div className="mb-6 sm:mb-8">
+        <div className="mb-6 sm:mb-8 mt-4 sm:mt-8">
           {headline.map((line, li) => (
             <div key={li} className="overflow-hidden">
               <h1
-                className="cinematic-title font-cinematic font-black text-ocw-white"
+                className="cinematic-title font-cinematic font-black text-ocw-white whitespace-nowrap"
                 style={{
-                  fontSize: 'clamp(2rem, 6vw, 5rem)',
+                  fontSize: 'clamp(1.5rem, 4vw, 3.5rem)',
                   lineHeight: '0.92',
+                  wordSpacing: '0.3em',
                 }}
               >
                 {line}
@@ -85,7 +86,7 @@ export const HeroSection = () => {
               SHOOT - EDIT - PUBLISH - PROMOTE - MARKET - SUCCESS
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-8">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-8 justify-center">
             <a
               href="https://www.instagram.com/our_creative_works/"
               target="_blank"
@@ -114,11 +115,7 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-2 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
-        <p className="font-mono text-[0.55rem] tracking-[0.3em] text-ocw-gray">SCROLL</p>
-        <div className="scroll-indicator" />
-      </div>
+
     </section>
 
       {/* Visiting Card Modal */}

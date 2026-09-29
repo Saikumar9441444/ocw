@@ -55,7 +55,7 @@ export const StatsSection = () => {
           className="mb-14 sm:mb-24 md:mb-32"
         >
           <div className="max-w-3xl">
-            <p className="section-label mb-6">05 — WHY US</p>
+            <p className="section-label mb-6">WHY US</p>
             <h2
               className="cinematic-title font-cinematic font-black text-ocw-white mb-6"
               style={{ fontSize: 'clamp(1.8rem, 6vw, 7rem)' }}
@@ -99,24 +99,7 @@ export const StatsSection = () => {
           </div>
         </motion.div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-12">
-          {CONFIG.stats.map((stat, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.2 + i * 0.1 }}
-              className="relative"
-            >
-              <div className="h-px w-8 bg-ocw-red mb-6" />
-              <Counter target={stat.value} suffix={stat.suffix} />
-              <p className="font-mono text-[0.6rem] tracking-[0.2em] text-ocw-gray mt-3 uppercase">
-                {stat.label}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+
       </div>
     </section>
   );

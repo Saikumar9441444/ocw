@@ -9,6 +9,8 @@ import { WorkPage } from './pages/WorkPage';
 import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
 import { Preloader } from './components/Preloader';
+import { ReelsPage } from './pages/ReelsPage';
+import { ServiceDetailsPage } from './pages/ServiceDetailsPage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -46,6 +48,8 @@ function App() {
             <Route path="/works" element={<WorkPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/reels" element={<ReelsPage />} />
+            <Route path="/services/:id" element={<ServiceDetailsPage />} />
           </Routes>
           <Footer />
         </div>

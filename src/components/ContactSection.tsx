@@ -32,14 +32,7 @@ export const ContactSection = () => {
 
           {/* Left */}
           <div>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7 }}
-              className="section-label mb-6"
-            >
-              06 — START A PROJECT
-            </motion.p>
+
 
             <motion.h2
               initial={{ opacity: 0, y: 40 }}
