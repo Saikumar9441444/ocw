@@ -65,7 +65,14 @@ export const HeroSection = () => {
         <div className="mb-6 sm:mb-8 mt-4 sm:mt-8">
           {headline.map((line, li) => (
             <div key={li} className="overflow-hidden">
-              <h1
+              <motion.h1
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.2 + li * 0.1,
+                  ease: [0.25, 0.46, 0.45, 0.94]
+                }}
                 className="cinematic-title font-cinematic font-black text-ocw-white whitespace-nowrap"
                 style={{
                   fontSize: 'clamp(1.5rem, 4vw, 3.5rem)',
@@ -74,7 +81,7 @@ export const HeroSection = () => {
                 }}
               >
                 {line}
-              </h1>
+              </motion.h1>
             </div>
           ))}
         </div>
@@ -82,11 +89,21 @@ export const HeroSection = () => {
         {/* CTAs */}
         <div>
           <div className="w-full overflow-hidden mb-8 sm:mb-10">
-            <p className="text-ocw-white-dim font-mono tracking-wider sm:tracking-[0.2em] text-[7.5px] sm:text-[11px] md:text-sm whitespace-nowrap text-ellipsis">
+            <motion.p 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="text-ocw-white-dim font-mono tracking-wider sm:tracking-[0.2em] text-[7.5px] sm:text-[11px] md:text-sm whitespace-nowrap text-ellipsis"
+            >
               SHOOT - EDIT - PUBLISH - PROMOTE - MARKET - SUCCESS
-            </p>
+            </motion.p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-8 justify-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1 }}
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-8 justify-center"
+          >
             <a
               href="https://www.instagram.com/our_creative_works/"
               target="_blank"
@@ -111,7 +128,7 @@ export const HeroSection = () => {
               <div className="absolute inset-0 bg-ocw-red translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
               <span className="relative z-10">CONTACT US</span>
             </button>
-          </div>
+          </motion.div>
         </div>
       </div>
 

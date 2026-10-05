@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import './index.css';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
@@ -24,6 +25,7 @@ function ScrollToTop() {
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
 
   // Lock scrolling while preloader is active
   useEffect(() => {
@@ -42,15 +44,17 @@ function App() {
         <div className="animate-in fade-in duration-1000">
           <ScrollToTop />
           <Navigation />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/works" element={<WorkPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/reels" element={<ReelsPage />} />
-            <Route path="/services/:id" element={<ServiceDetailsPage />} />
-          </Routes>
+          <AnimatePresence mode="wait">
+            <Routes location={location} key={location.pathname}>
+              <Route path="/" element={<Home />} />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/works" element={<WorkPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/reels" element={<ReelsPage />} />
+              <Route path="/services/:id" element={<ServiceDetailsPage />} />
+            </Routes>
+          </AnimatePresence>
           <Footer />
         </div>
       )}

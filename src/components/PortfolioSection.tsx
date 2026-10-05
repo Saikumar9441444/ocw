@@ -132,9 +132,7 @@ const PortfolioCard = ({
           </p>
         </motion.div>
 
-        <h3 className="cinematic-title font-cinematic font-bold text-ocw-white"
-          style={{ fontSize: project.featured ? 'clamp(1.5rem, 3vw, 2.8rem)' : '1.4rem' }}
-        >
+        <h3 className="cinematic-title font-cinematic font-bold text-ocw-white text-xl sm:text-2xl">
           {project.title}
         </h3>
 
@@ -160,7 +158,7 @@ export const PortfolioSection = ({ limit }: { limit?: number }) => {
   const inView = useInView(ref, { once: true, margin: '-100px' });
   const [filter, setFilter] = useState('ALL');
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
-  const categories = ['ALL', 'CINEMATIC', 'DRONE', 'FILMMAKING', 'EVENT', 'PHOTOGRAPHY', 'PROMOTIONAL'];
+  const categories = ['ALL', 'CINEMATIC', 'EVENT', 'PROMOTIONAL'];
 
   let filtered = filter === 'ALL'
     ? CONFIG.portfolio

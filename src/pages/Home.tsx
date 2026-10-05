@@ -4,18 +4,21 @@ import { PortfolioSection } from '../components/PortfolioSection';
 import { ServicesSection } from '../components/ServicesSection';
 import { StatsSection } from '../components/StatsSection';
 import { ContactSection } from '../components/ContactSection';
+import { PageTransition } from '../components/PageTransition';
 
 export const Home = () => {
   return (
-    <main>
-      <HeroSection />
-      <HeroStats />
-      <PortfolioSection limit={4} />
-      <ServicesSection />
-      <StatsSection />
-      <div className="mt-24">
-        <ContactSection />
-      </div>
-    </main>
+    <PageTransition>
+      <main>
+        <HeroSection />
+        <HeroStats />
+        <PortfolioSection limit={4} />
+        <ServicesSection />
+        <StatsSection />
+        <div className="mt-24">
+          <ContactSection />
+        </div>
+      </main>
+    </PageTransition>
   );
 };
