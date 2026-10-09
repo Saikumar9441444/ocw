@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { VideoModal } from './VideoModal';
 import { CONFIG } from '../config';
@@ -76,7 +76,6 @@ const PortfolioCard = ({
         <img
           src={project.image}
           alt={project.title}
-          loading="lazy"
           className="w-full h-full transition-transform duration-700 bg-black z-0 object-cover absolute inset-0"
           style={{ transform: hovered ? 'scale(1.05)' : 'scale(1)' }}
         />
@@ -158,8 +157,9 @@ const PortfolioCard = ({
 
 export const PortfolioSection = ({ limit }: { limit?: number }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const location = useLocation();
   const inView = useInView(ref, { once: true, margin: '-100px' });
-  const [filter, setFilter] = useState('ALL');
+  const [filter, setFilter] = useState(location.state?.filter || 'ALL');
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const categories = ['ALL', 'CINEMATIC', 'EVENT', 'PROMOTIONAL', 'PREMIUM'];
 
@@ -287,8 +287,8 @@ export const PortfolioSection = ({ limit }: { limit?: number }) => {
             transition={{ duration: 0.5 }}
             className="mt-12 sm:mt-16 flex justify-center"
           >
-            <Link to="/works" className="btn-outline">
-              VIEW MORE WORKS
+            <Link to="/works" state={{ filter: 'PREMIUM' }} className="btn-outline">
+              VIEW PREMIUM WORKS
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
