@@ -166,12 +166,13 @@ export const PortfolioSection = ({ limit }: { limit?: number }) => {
     ? CONFIG.portfolio
     : CONFIG.portfolio.filter(p => p.category === filter);
 
-  if (limit) {
-    filtered = filtered.slice(0, limit);
-  }
+  let verticalProjects = filtered.filter(p => p.category !== 'PREMIUM');
+  let horizontalProjects = filtered.filter(p => p.category === 'PREMIUM');
 
-  const verticalProjects = filtered.filter(p => p.category !== 'PREMIUM');
-  const horizontalProjects = filtered.filter(p => p.category === 'PREMIUM');
+  if (limit) {
+    verticalProjects = verticalProjects.slice(0, limit);
+    horizontalProjects = horizontalProjects.slice(0, limit);
+  }
 
   return (
     <section id="work" ref={ref} className="relative bg-ocw-charcoal py-8 md:py-12 overflow-hidden">
