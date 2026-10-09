@@ -65,7 +65,7 @@ const PortfolioCard = ({
       onHoverEnd={() => setHovered(false)}
       onClick={() => project.video && onSelectVideo(project.video)}
       className={`portfolio-card relative overflow-hidden cursor-pointer group ${className || ''}`}
-      style={{ aspectRatio: '9/16' }}
+      style={{ aspectRatio: '16/9' }}
     >
       {/* Background while loading */}
       {!isLoaded && <div className="absolute inset-0 bg-ocw-black z-0" />}
@@ -158,7 +158,7 @@ export const PortfolioSection = ({ limit }: { limit?: number }) => {
   const inView = useInView(ref, { once: true, margin: '-100px' });
   const [filter, setFilter] = useState('ALL');
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
-  const categories = ['ALL', 'CINEMATIC', 'EVENT', 'PROMOTIONAL'];
+  const categories = ['ALL', 'CINEMATIC', 'EVENT', 'PROMOTIONAL', 'PREMIUM'];
 
   let filtered = filter === 'ALL'
     ? CONFIG.portfolio
