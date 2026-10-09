@@ -221,7 +221,7 @@ export const PortfolioSection = ({ limit }: { limit?: number }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
-            className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8"
           >
             {filtered.map((project, i) => (
               <PortfolioCard
