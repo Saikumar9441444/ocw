@@ -134,7 +134,7 @@ const PortfolioCard = ({
           </p>
         </motion.div>
 
-        <h3 className="cinematic-title font-cinematic font-bold text-ocw-white text-xl sm:text-2xl">
+        <h3 className={`cinematic-title font-cinematic font-bold text-ocw-white ${isHorizontal ? 'text-base sm:text-lg' : 'text-xl sm:text-2xl'}`}>
           {project.title}
         </h3>
 
