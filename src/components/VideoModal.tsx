@@ -46,19 +46,26 @@ export const VideoModal = ({ isOpen, onClose, videoSrc, isHorizontal }: VideoMod
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 120 }}
             onClick={(e) => e.stopPropagation()}
-            className={`relative w-full h-[100dvh] sm:h-auto bg-black sm:rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center mx-auto ${
+            className={`relative w-full h-[100dvh] bg-black overflow-hidden shadow-2xl flex items-center justify-center mx-auto ${
               isHorizontal 
-                ? 'sm:max-w-[1200px] sm:w-[90vw] sm:aspect-[16/9]' 
-                : 'sm:max-w-[420px] sm:aspect-[9/16] sm:max-h-[90vh]'
+                ? 'sm:w-[95vw] sm:h-[95vh] sm:rounded-xl' 
+                : 'sm:max-w-[420px] sm:aspect-[9/16] sm:h-[95vh] sm:rounded-2xl'
             }`}
           >
+            {/* Mobile Rotate Prompt for Horizontal Videos */}
+            {isHorizontal && (
+              <div className="absolute top-24 left-1/2 -translate-x-1/2 sm:hidden bg-ocw-red text-white text-[10px] tracking-widest px-4 py-2 rounded-full font-mono whitespace-nowrap z-[120] pointer-events-none animate-pulse shadow-[0_0_15px_rgba(196,30,58,0.5)]">
+                ROTATE DEVICE FOR FULL SCREEN
+              </div>
+            )}
+
             {videoSrc ? (
               videoSrc.includes('drive.google.com') || videoSrc.includes('youtube.com') ? (
                 <iframe
                   ref={iframeRef}
-                  src={videoSrc.includes('youtube.com') ? `${videoSrc.replace('&mute=1', '')}&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0&controls=0&playsinline=1&enablejsapi=1` : videoSrc.replace('&mute=1', '')}
+                  src={videoSrc.includes('youtube.com') ? `${videoSrc.replace('&mute=1', '')}&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0&controls=1&playsinline=1&enablejsapi=1` : videoSrc.replace('&mute=1', '')}
                   className="w-full h-full bg-black"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                   allowFullScreen
                   style={{ border: 'none' }}
                 />

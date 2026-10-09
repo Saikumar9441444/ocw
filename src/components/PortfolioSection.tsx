@@ -230,17 +230,35 @@ export const PortfolioSection = ({ limit }: { limit?: number }) => {
             className="flex flex-col gap-12 sm:gap-16 lg:gap-20"
           >
             {verticalProjects.length > 0 && (
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-                {verticalProjects.map((project, i) => (
-                  <PortfolioCard
-                    key={project.id}
-                    project={project}
-                    index={i}
-                    onSelectVideo={setSelectedVideo}
-                    className={limit && i === 3 ? 'md:hidden' : ''}
-                    isHorizontal={false}
-                  />
-                ))}
+              <div className="flex flex-col gap-6">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                  {verticalProjects.map((project, i) => (
+                    <PortfolioCard
+                      key={project.id}
+                      project={project}
+                      index={i}
+                      onSelectVideo={setSelectedVideo}
+                      className={limit && i === 3 ? 'md:hidden' : ''}
+                      isHorizontal={false}
+                    />
+                  ))}
+                </div>
+                {limit && (
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5, duration: 0.5 }}
+                    className="flex justify-center my-6"
+                  >
+                    <Link 
+                      to="/works" 
+                      className="font-mono text-[0.65rem] tracking-[0.2em] text-ocw-red border border-ocw-red px-6 py-3 hover:text-white hover:bg-ocw-red/20 transition-all duration-300 shadow-[0_0_15px_rgba(196,30,58,0.3)] hover:shadow-[0_0_25px_rgba(196,30,58,0.6)] flex items-center gap-2"
+                    >
+                      VIEW MORE WORKS
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </Link>
+                  </motion.div>
+                )}
               </div>
             )}
 
