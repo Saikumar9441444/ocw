@@ -5,9 +5,10 @@ interface VideoModalProps {
   isOpen: boolean;
   onClose: () => void;
   videoSrc?: string;
+  isHorizontal?: boolean;
 }
 
-export const VideoModal = ({ isOpen, onClose, videoSrc }: VideoModalProps) => {
+export const VideoModal = ({ isOpen, onClose, videoSrc, isHorizontal }: VideoModalProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [isMuted, setIsMuted] = useState(false); // Start unmuted as requested
@@ -45,7 +46,11 @@ export const VideoModal = ({ isOpen, onClose, videoSrc }: VideoModalProps) => {
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 120 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full h-[100dvh] sm:h-auto sm:max-w-[420px] sm:aspect-[9/16] sm:max-h-[90vh] bg-black sm:rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center mx-auto"
+            className={`relative w-full h-[100dvh] sm:h-auto bg-black sm:rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center mx-auto ${
+              isHorizontal 
+                ? 'sm:max-w-[1200px] sm:w-[90vw] sm:aspect-[16/9]' 
+                : 'sm:max-w-[420px] sm:aspect-[9/16] sm:max-h-[90vh]'
+            }`}
           >
             {videoSrc ? (
               videoSrc.includes('drive.google.com') || videoSrc.includes('youtube.com') ? (

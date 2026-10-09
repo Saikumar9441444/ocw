@@ -284,6 +284,7 @@ export const PortfolioSection = ({ limit }: { limit?: number }) => {
         isOpen={selectedVideo !== null}
         onClose={() => setSelectedVideo(null)}
         videoSrc={selectedVideo || undefined}
+        isHorizontal={CONFIG.portfolio.find(p => p.video === selectedVideo)?.category === 'PREMIUM'}
       />
     </section>
   );
