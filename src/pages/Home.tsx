@@ -12,7 +12,7 @@ export const Home = () => {
       <main>
         <HeroSection />
         <HeroStats />
-        <PortfolioSection limit={4} />
+        <PortfolioSection limit={3} />
         <ServicesSection />
         <StatsSection />
         <div className="mt-24">

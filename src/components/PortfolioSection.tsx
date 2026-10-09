@@ -11,11 +11,13 @@ const PortfolioCard = ({
   className,
   index,
   onSelectVideo,
+  isHorizontal,
 }: {
   project: Project;
   className?: string;
   index: number;
   onSelectVideo: (videoSrc: string) => void;
+  isHorizontal?: boolean;
 }) => {
   const [hovered, setHovered] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -65,7 +67,7 @@ const PortfolioCard = ({
       onHoverEnd={() => setHovered(false)}
       onClick={() => project.video && onSelectVideo(project.video)}
       className={`portfolio-card relative overflow-hidden cursor-pointer group ${className || ''}`}
-      style={{ aspectRatio: '16/9' }}
+      style={{ aspectRatio: isHorizontal ? '16/9' : '9/16' }}
     >
       {/* Background while loading */}
       {!isLoaded && <div className="absolute inset-0 bg-ocw-black z-0" />}
@@ -168,6 +170,9 @@ export const PortfolioSection = ({ limit }: { limit?: number }) => {
     filtered = filtered.slice(0, limit);
   }
 
+  const verticalProjects = filtered.filter(p => p.category !== 'PREMIUM');
+  const horizontalProjects = filtered.filter(p => p.category === 'PREMIUM');
+
   return (
     <section id="work" ref={ref} className="relative bg-ocw-charcoal py-8 md:py-12 overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-5 sm:px-8 md:px-16">
@@ -221,17 +226,36 @@ export const PortfolioSection = ({ limit }: { limit?: number }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8"
+            className="flex flex-col gap-12 sm:gap-16 lg:gap-20"
           >
-            {filtered.map((project, i) => (
-              <PortfolioCard
-                key={project.id}
-                project={project}
-                index={i}
-                onSelectVideo={setSelectedVideo}
-                className={limit && i === 3 ? 'md:hidden' : ''}
-              />
-            ))}
+            {verticalProjects.length > 0 && (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                {verticalProjects.map((project, i) => (
+                  <PortfolioCard
+                    key={project.id}
+                    project={project}
+                    index={i}
+                    onSelectVideo={setSelectedVideo}
+                    className={limit && i === 3 ? 'md:hidden' : ''}
+                    isHorizontal={false}
+                  />
+                ))}
+              </div>
+            )}
+
+            {horizontalProjects.length > 0 && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+                {horizontalProjects.map((project, i) => (
+                  <PortfolioCard
+                    key={project.id}
+                    project={project}
+                    index={i + verticalProjects.length}
+                    onSelectVideo={setSelectedVideo}
+                    isHorizontal={true}
+                  />
+                ))}
+              </div>
+            )}
           </motion.div>
         </AnimatePresence>
 
