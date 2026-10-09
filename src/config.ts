@@ -111,7 +111,7 @@ export const CONFIG = {
       category: 'PREMIUM',
       year: '2026',
       description: 'Premium cinematic showcase of Future Fitness Gym.',
-      image: 'https://img.youtube.com/vi/zkwHWer0Vh4/maxresdefault.jpg',
+      image: '/b1.png',
       video: 'https://www.youtube.com/embed/zkwHWer0Vh4?autoplay=1&mute=1&loop=1&playlist=zkwHWer0Vh4',
       featured: true,
     },
